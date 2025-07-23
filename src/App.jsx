@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom'
 import Login from './auth/Login'
 
-import AddLunch from './pages/AddLunch'
+import Lunch from './pages/Lunch'
 import WeeklyMenu from './pages/WeeklyMenu'
 import Stats from './pages/Stats'
 import { useAuth } from './context/AuthContext'
@@ -23,14 +23,14 @@ const PrivateRoute = ({ children }) => {
 function App() {
   return (
     <Router>
-      <Navbar/>
+      <Navbar />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route
           path="/agregar"
           element={
             <PrivateRoute>
-              <AddLunch />
+              <Lunch />
             </PrivateRoute>
           }
         />

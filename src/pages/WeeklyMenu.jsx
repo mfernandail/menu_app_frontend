@@ -1,4 +1,8 @@
 function WeeklyMenu() {
-  return <div></div>
+  return (
+    <>
+      <h1>Menu semanal</h1>
+    </>
+  )
 }
 export default WeeklyMenu

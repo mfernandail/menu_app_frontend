@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../context/AuthContext' 
+import { useAuth } from '../context/AuthContext'
+import '../styles/Login.css'
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -8,30 +9,6 @@ export default function Login() {
   const [error, setError] = useState('')
   const { login } = useAuth()
   const navigate = useNavigate()
-
-  // const handleLogin = async (e) => {
-  //   e.preventDefault()
-  //   setError('')
-
-  //   try {
-  //     const response = await fetch('http://localhost:3000/api/login', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       credentials: 'include', // 🔐 envía y recibe cookies
-  //       body: JSON.stringify({ email, password }),
-  //     })
-
-  //     if (!response.ok) {
-  //       throw new Error('Credenciales inválidas')
-  //     }
-
-  //     navigate('/menu') // ✅ redirige si todo sale bien
-  //   } catch (err) {
-  //     setError(err.message)
-  //   }
-  // }
 
   const handleLogin = async (e) => {
     e.preventDefault()
@@ -46,9 +23,9 @@ export default function Login() {
   }
 
   return (
-    <div>
+    <div className="login-container">
       <h2>Iniciar sesión</h2>
-      <form onSubmit={handleLogin}>
+      <form className="login-form" onSubmit={handleLogin}>
         <input
           type="email"
           placeholder="Correo electrónico"
