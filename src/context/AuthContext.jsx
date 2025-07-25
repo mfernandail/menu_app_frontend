@@ -41,7 +41,7 @@ export function AuthProvider({ children }) {
 
   // 🔐 Login: enviar email y password al backend
   const login = async (email, password) => {
-    const res = await fetch('https://menu-app-api.onrender.com/login', {
+    const res = await fetch('https://menu-app-api.onrender.com/api/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
@@ -59,7 +59,7 @@ export function AuthProvider({ children }) {
 
     // if (check.ok) {
     //   const data = await check.json()
-    //   setUser(data.user)
+    //   setUser(data.user)s
     // }
     const { user } = await res.json()
     setUser(user)
