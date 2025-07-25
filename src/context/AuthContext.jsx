@@ -8,39 +8,39 @@ export function AuthProvider({ children }) {
 
   // 🔍 Verifica la sesión preguntando al backend
   useEffect(() => {
-  const checkSession = async () => {
-    try {
-      const res = await fetch(
-        'https://menu-app-api-1.onrender.com/api/protected',
-        {
-          credentials: 'include',
+    const checkSession = async () => {
+      try {
+        const res = await fetch(
+          'https://menu-app-api.onrender.com/api/protected',
+          {
+            credentials: 'include',
+          }
+        )
+
+        if (res.ok) {
+          const data = await res.json()
+          setUser(data.user)
+        } else {
+          // No mostramos el error 401 en consola
+          setUser(null)
         }
-      )
-
-      if (res.ok) {
-        const data = await res.json()
-        setUser(data.user)
-      } else {
-        // No mostramos el error 401 en consola
+      } catch (err) {
+        // Solo mostramos errores importantes
+        if (err.message !== 'Failed to fetch') {
+          console.error(err)
+        }
         setUser(null)
+      } finally {
+        setLoading(false)
       }
-    } catch (err) {
-      // Solo mostramos errores importantes
-      if (err.message !== 'Failed to fetch') {
-        console.error(err)
-      }
-      setUser(null)
-    } finally {
-      setLoading(false)
     }
-  }
 
-  checkSession()
-}, [])
+    checkSession()
+  }, [])
 
   // 🔐 Login: enviar email y password al backend
   const login = async (email, password) => {
-    const res = await fetch('https://menu-app-api-1.onrender.com/login', {
+    const res = await fetch('https://menu-app-api.onrender.com/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
@@ -66,7 +66,7 @@ export function AuthProvider({ children }) {
 
   // 🔓 Logout: borrar cookie en backend
   const logout = async () => {
-    await fetch('https://menu-app-api-1.onrender.com/api/logout', {
+    await fetch('https://menu-app-api.onrender.com/api/logout', {
       method: 'POST',
       credentials: 'include',
     })
