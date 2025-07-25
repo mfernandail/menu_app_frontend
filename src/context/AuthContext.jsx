@@ -10,9 +10,12 @@ export function AuthProvider({ children }) {
   useEffect(() => {
   const checkSession = async () => {
     try {
-      const res = await fetch('http://localhost:3000/api/protected', {
-        credentials: 'include',
-      })
+      const res = await fetch(
+        'https://menu-app-api-1.onrender.com/api/protected',
+        {
+          credentials: 'include',
+        }
+      )
 
       if (res.ok) {
         const data = await res.json()
@@ -37,7 +40,7 @@ export function AuthProvider({ children }) {
 
   // 🔐 Login: enviar email y password al backend
   const login = async (email, password) => {
-    const res = await fetch('http://localhost:3000/api/login', {
+    const res = await fetch('https://menu-app-api-1.onrender.com/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
@@ -59,12 +62,11 @@ export function AuthProvider({ children }) {
     // }
     const { user } = await res.json()
     setUser(user)
-
   }
 
   // 🔓 Logout: borrar cookie en backend
   const logout = async () => {
-    await fetch('http://localhost:3000/api/logout', {
+    await fetch('https://menu-app-api-1.onrender.com/api/logout', {
       method: 'POST',
       credentials: 'include',
     })
