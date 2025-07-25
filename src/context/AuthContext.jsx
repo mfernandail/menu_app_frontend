@@ -13,6 +13,7 @@ export function AuthProvider({ children }) {
         const res = await fetch(
           'https://menu-app-api.onrender.com/api/protected',
           {
+            method: 'GET',
             credentials: 'include',
           }
         )
