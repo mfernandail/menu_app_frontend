@@ -1,2 +1,3 @@
 VITE_SUPABASE_URL=https://link.supabase.co
 VITE_SUPABASE_ANON_KEY=123qwe
+VITE_API_URL=

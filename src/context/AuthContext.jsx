@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react'
+const api = import.meta.env.VITE_API_URL
 
 const AuthContext = createContext()
 
@@ -10,13 +11,10 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const checkSession = async () => {
       try {
-        const res = await fetch(
-          'https://menu-app-api.onrender.com/api/protected',
-          {
-            method: 'GET',
-            credentials: 'include',
-          }
-        )
+        const res = await fetch(`${api}/api/protected`, {
+          method: 'GET',
+          credentials: 'include',
+        })
 
         if (res.ok) {
           const data = await res.json()
@@ -41,7 +39,7 @@ export function AuthProvider({ children }) {
 
   // 🔐 Login: enviar email y password al backend
   const login = async (email, password) => {
-    const res = await fetch('https://menu-app-api.onrender.com/api/login', {
+    const res = await fetch(`${api}/api/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
@@ -67,7 +65,7 @@ export function AuthProvider({ children }) {
 
   // 🔓 Logout: borrar cookie en backend
   const logout = async () => {
-    await fetch('https://menu-app-api.onrender.com/api/logout', {
+    await fetch(`${api}/api/logout`, {
       method: 'POST',
       credentials: 'include',
     })
